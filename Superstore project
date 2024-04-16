@@ -31,26 +31,35 @@ VALUES
 
 #For this project, I used SQL to query the Superstore database to get information about items sold at the store and their prices.
 
-SELECT * FROM superstore ORDER BY price;
+--Order by items price
+SELECT *
+FROM superstore
+ORDER BY price;
 
-SELECT 
-    SUM(price) AS total_price,
-    AVG(price) AS average_price,
-    MIN(price) AS min_price,
-    MAX(price) AS max_price,
-    COUNT(*) AS total_items
+--What is the average price of items?
+SELECT AVG(price)
 FROM superstore;
 
-SELECT 
-    SUM(price) AS total_price_kitchen_supplies,
-    AVG(price) AS average_price_kitchen_supplies,
-    MIN(price) AS min_price_kitchen_supplies,
-    MAX(price) AS max_price_kitchen_supplies,
-    COUNT(*) AS total_items_kitchen_supplies
+--What is the most expensive kitchen item?
+SELECT MAX(price), item_name
 FROM superstore
-WHERE category = 'Kitchen Supplies';
+WHERE category='Kitchen Supplies';
 
-SELECT 
-    SUM(stock_quantity) AS total_stock_quantity_appliances
+--How many air purifiers are in stock?
+SELECT item_name, stock_quantity
 FROM superstore
-WHERE category = 'Appliances' AND average_rating > 4.4;
+WHERE item_name='Air Purifier';
+
+--What is the most expensive item?
+SELECT MAX(price), item_name
+FROM superstore;
+
+--What is the least expensive item?
+SELECT MIN(price), item_name
+FROM superstore;
+
+--Top 5 highest-rated items
+SELECT *
+FROM superstore
+ORDER BY average_rating DESC
+LIMIT 5;
